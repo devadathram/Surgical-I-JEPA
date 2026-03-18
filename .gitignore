@@ -1,0 +1,8 @@
+*.tar
+*.pth
+*.pt
+*.jpg
+*.png
+upload_log.txt
+nohup.out
+__pycache__/

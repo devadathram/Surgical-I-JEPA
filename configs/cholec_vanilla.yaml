@@ -1,0 +1,45 @@
+meta:
+  model_name: vit_base
+  use_bfloat16: True
+  load_checkpoint: True
+  read_checkpoint: "cholec_constrained_01-latest.pth.tar"
+  copy_data: False
+  pred_depth: 6
+  pred_emb_dim: 384
+data:
+  batch_size: 32
+  crop_size: 224
+  image_folder: ''
+  num_workers: 8
+  root_path: "/home/devadath/cholec80/OptSurgAI/sample video/processed_output"
+  subset_file: "/home/devadath/cholec80/OptSurgAI/AEApproach/ijepa/subset_files/cholec_subset_15k.txt"
+  json_path : "/home/devadath/cholec80/MarchPipeline/Metadata/cholec_manifest.json"
+  raw_frames_path : "/home/devadath/cholec80/OptSurgAI/AEApproach/Subset_folder"
+  pin_mem: True
+  crop_scale: [0.3, 1.0]
+  use_gaussian_blur: False
+  use_horizontal_flip: True
+  use_color_distortion: True
+  color_jitter_strength: 0.4
+mask:
+  patch_size: 16
+  allow_overlap: False
+  num_enc_masks: 1
+  min_keep: 10
+  enc_mask_scale: [0.85, 1.0]
+  num_pred_masks: 4
+  pred_mask_scale: [0.15, 0.2]
+  aspect_ratio: [0.75, 1.5]
+optimization:
+  ema: [0.996, 1.0]
+  ipe_scale: 1.0
+  weight_decay: 0.05
+  final_weight_decay: 0.4
+  epochs: 50
+  warmup: 10
+  start_lr: 0.0002
+  lr: 0.0005
+  final_lr: 0.00001
+logging:
+  folder: "logs/vanilla_test"
+  write_tag: "cholec_constrained_01"
